@@ -105,7 +105,13 @@ body {
     text-decoration: none;
 }
 
-
+.website-title {
+    text-align: center;
+    font-size: 2rem;
+    padding: 20px;
+    background-color: #007BFF;
+    color: white;
+}   
 
 .book-card h2 {
     font-size: 1.2rem;
@@ -118,3 +124,12 @@ body {
     color: #777;
 }
 
+
+.highly-rated-label {
+    background-color: #ffcc00;
+    color: #fffdfd;
+    font-weight: bold;
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+}

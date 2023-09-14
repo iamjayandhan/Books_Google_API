@@ -58,7 +58,7 @@ searchButton.addEventListener('click', () => {
         const apiKey = 'AIzaSyB30pLvAsbcSNG-4FEaNgGtvv3U9689DPA';
 
         // Make a request to the Google Books API with your API key
-        const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchTerm)}&orderBy=relevance&maxResults=10&key=${apiKey}`;
+        const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchTerm)}&orderBy=relevance&maxResults=30&key=${apiKey}`;
 
         fetch(apiUrl)
             .then(response => response.json())
@@ -78,59 +78,80 @@ searchButton.addEventListener('click', () => {
                     //     const title = book.volumeInfo.title;
                     //     const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author';
                     //     const rating = book.volumeInfo.averageRating || 'N/A';
+                    //     const infoLink = book.volumeInfo.infoLink || '#'; // Use '#' if no link is available
 
-                    //     // Create a card for each book
+                    //     // Create a card for each book with a link for reading
                     //     const card = document.createElement('div');
                     //     card.classList.add('book-card');
                     //     card.innerHTML = `
                     //         <h2>${title}</h2>
                     //         <p>Author(s): ${authors}</p>
                     //         <p>Rating: ${rating}</p>
+                    //         <a href="${infoLink}" target="_blank">Read Book</a>
                     //     `;
 
                     //     resultsContainer.appendChild(card);
                     // });
 
-                    // sorted based on rating
+                    // Modify the JavaScript code to include a thumbnail image in the card
+
+
+
+
+                    //final
+                   // Modify the JavaScript code to include a link to each book for reading
                     // sortedBooks.forEach(book => {
                     //     const title = book.volumeInfo.title;
                     //     const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author';
                     //     const rating = book.volumeInfo.averageRating || 'N/A';
-                    //     const previewLink = book.volumeInfo.previewLink || '#'; // Use '#' if no link is available
-                    
-                    //     // Create a card for each book with a link
+                    //     const infoLink = book.volumeInfo.infoLink || '#'; // Use '#' if no link is available
+                    //     const thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'image-not-available.jpg'; // Provide a default image if not available
+
+                    //     // Create a card for each book with a thumbnail and the correct link
                     //     const card = document.createElement('div');
                     //     card.classList.add('book-card');
                     //     card.innerHTML = `
+                    //         <img src="${thumbnail}" alt="${title}" class="book-thumbnail">
                     //         <h2>${title}</h2>
                     //         <p>Author(s): ${authors}</p>
                     //         <p>Rating: ${rating}</p>
-                    //         <a href="${previewLink}" target="_blank">Read Book</a>
+                    //         <a href="${infoLink}" target="_blank">Read Book</a>
                     //     `;
-                    
+
                     //     resultsContainer.appendChild(card);
                     // });
 
-                    // Modify the JavaScript code to include a link to each book for reading
+
+
                     // Modify the JavaScript code to include a link to each book for reading
                     sortedBooks.forEach(book => {
                         const title = book.volumeInfo.title;
                         const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author';
                         const rating = book.volumeInfo.averageRating || 'N/A';
                         const infoLink = book.volumeInfo.infoLink || '#'; // Use '#' if no link is available
+                        const thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'image-not-available.jpg'; // Provide a default image if not available
 
-                        // Create a card for each book with a link for reading
+                        // Create a card for each book with a thumbnail and the correct link
                         const card = document.createElement('div');
                         card.classList.add('book-card');
                         card.innerHTML = `
+                            <img src="${thumbnail}" alt="${title}" class="book-thumbnail">
                             <h2>${title}</h2>
                             <p>Author(s): ${authors}</p>
                             <p>Rating: ${rating}</p>
-                            <a href="${infoLink}" target="_blank">Read Book</a>
                         `;
 
-    resultsContainer.appendChild(card);
-});
+                        if (infoLink.includes('play.google.com')) {
+                            // Replace play.google.com links with Google Books links
+                            card.innerHTML += `<a href="${infoLink.replace('play.google.com', 'books.google.com')}" target="_blank">Read Book</a>`;
+                        } else {
+                            card.innerHTML += `<a href="${infoLink}" target="_blank">Read Book</a>`;
+                        }
+
+                        resultsContainer.appendChild(card);
+                    });
+
+
 
 
 
